@@ -10,6 +10,8 @@
   <arg name="pitch" default="0"/>
   <arg name="yaw" default="3.14159"/>
 
+  <arg name="rqt" doc="Start rqt as well." default="false"/>
+
   <!-- Launch other relevant files-->
   <include file="$(find my_robot)/launch/robot_description.launch"/>
 
@@ -36,7 +38,9 @@
   <!--launch rviz-->
   <node name="rviz" pkg="rviz" type="rviz" respawn="false"/>
 
-  <!--launch rqt-->
-  <node name="rqt" pkg="rqt_gui" type="rqt_gui" respawn="false"/>
+  <group if="$(arg rqt)">
+    <!--launch rqt-->
+    <node name="rqt" pkg="rqt_gui" type="rqt_gui" respawn="false"/>
+  </group>
 
 </launch>
